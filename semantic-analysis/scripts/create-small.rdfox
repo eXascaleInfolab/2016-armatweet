@@ -1,0 +1,28 @@
+ttl-path
+load "BMpedia+WordNet.fmt"
+threads 8
+import \
+    "$(TTL-PATH)tweets.2015-01-01.ttl" \
+    "$(TTL-PATH)tweets.2015-01-02.ttl" \
+    "$(TTL-PATH)tweets.2015-01-03.ttl" \
+    "$(TTL-PATH)tweets.2015-01-04.ttl" \
+    "$(TTL-PATH)tweets.2015-01-05.ttl" \
+    "$(TTL-PATH)tweets.2015-01-06.ttl" \
+    "$(TTL-PATH)tweets.2015-01-07.ttl" \
+    "$(TTL-PATH)tweets.2015-01-08.ttl" \
+    "$(TTL-PATH)tweets.2015-01-09.ttl" \
+    "$(TTL-PATH)tweets.2015-01-10.ttl" \
+    "$(TTL-PATH)tweets.2015-01-11.ttl" \
+    "$(TTL-PATH)tweets.2015-01-12.ttl" \
+    "$(TTL-PATH)tweets.2015-01-13.ttl" \
+    "$(TTL-PATH)tweets.2015-01-14.ttl" \
+    "$(TTL-PATH)tweets.2015-01-15.ttl" \
+    "$(TTL-PATH)tweets.2015-01-16.ttl" \
+    "$(TTL-PATH)tweets.2015-01-17.ttl" \
+    "$(TTL-PATH)tweets.2015-01-18.ttl" \
+    "$(TTL-PATH)tweets.2015-01-19.ttl" \
+    "$(TTL-PATH)tweets.2015-01-20.ttl" \
+    "$(TTL-PATH)tweets.2015-01-21.ttl"
+threads 1
+updatestats
+fsave "tweets-01.01-01.21.fmt"

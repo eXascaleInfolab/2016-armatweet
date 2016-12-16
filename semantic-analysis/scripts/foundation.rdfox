@@ -1,0 +1,7 @@
+init par-complex-nn
+threads 8
+import \
+    "BMpedia.ttl" \
+    "wordnet.nt"
+threads 1
+fsave "BMpedia+WordNet.fmt"

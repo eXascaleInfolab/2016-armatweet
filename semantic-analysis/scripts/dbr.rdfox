@@ -1,0 +1,25 @@
+run ! \
+    SELECT ?TW ?T ?E1 ?E2 ?E3 ?E4 ?PG WHERE { \
+        BIND(dbr:$(1) AS ?DBR) . { \
+            ?TW aso:tweetEntity ?DBR \
+        } UNION { \
+            ?TW aso:tweetQuad ?Q . ?Q aso:tripleSubject ?DBR \
+        } UNION { \
+            ?TW aso:tweetQuad ?Q . ?Q aso:tripleObject ?DBR \
+        } . \
+        { \
+            BIND("date/time" AS ?T) . ?TW aso:createdAt ?E1 \
+        } UNION { \
+            BIND("day      " AS ?T) . ?TW aso:tweetDay ?E1 \
+        } UNION { \
+            BIND("text     " AS ?T) . ?TW aso:hasText ?E1 \
+        } UNION { \
+            ?TW aso:tweetQuad ?T . OPTIONAL { ?T aso:quadSubject ?E1 } . OPTIONAL { ?T aso:quadPredicate ?E2 . ?E2 wno:gloss ?PG } . OPTIONAL { ?T aso:quadObject ?E3 } . OPTIONAL { ?T aso:quadLocation ?E4 } \
+        } UNION { \
+            BIND("entity   " AS ?T) . ?TW aso:tweetEntity ?E1 \
+        } UNION { \
+            BIND("country  " AS ?T) . ?TW aso:tweetCountry ?E1 \
+        } UNION { \
+            BIND("predicate" AS ?T) . ?TW aso:tweetPredicate ?E1 . ?E1 wno:gloss ?PG \
+        } \
+    }

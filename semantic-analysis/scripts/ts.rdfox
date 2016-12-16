@@ -1,0 +1,58 @@
+echo "=================================================="
+echo "  $(1) time series summary"
+echo "--------------------------------------------------"
+set query.delete-output-if-answer-empty false
+set output "$(TIME-RANGE)/$(1)-summary.txt"
+run ! \
+    SELECT ?TS ?S ?P ?PG ?O ?C WHERE { \
+        ?TS rdf:type aso:$(1) . \
+        OPTIONAL { ?TS aso:timeSeriesSubject ?S } . \
+        OPTIONAL { ?TS aso:timeSeriesPredicate ?P . ?P wno:gloss ?PG } . \
+        OPTIONAL { ?TS aso:timeSeriesObject  ?O } . \
+        OPTIONAL { ?TS aso:timeSeriesCountry ?C } \
+    }
+echo "=================================================="
+echo "  $(1) time series tweets"
+echo "--------------------------------------------------"
+set output "$(TIME-RANGE)/$(1)-tweets.txt"
+run ! \
+    SELECT ?TS ?CT ?TXT ?DT ?TW WHERE { \
+        ?TS rdf:type aso:$(1) . \
+        { ?TS aso:timeSeriesHigh ?TW . BIND("high" AS ?CT) } UNION { ?TS aso:timeSeriesLow ?TW . BIND("low" AS ?CT) } . \
+        ?TW aso:hasText ?TXT . ?TW aso:createdAt ?DT \
+    }
+echo "=================================================="
+echo "  $(1) time background-S tweets"
+echo "--------------------------------------------------"
+set query.delete-output-if-answer-empty true
+set output "$(TIME-RANGE)/$(1)-background-S.txt"
+run ! \
+    SELECT ?TS ?CT ?TXT ?DT ?TW WHERE { \
+        ?TS rdf:type aso:$(1) . \
+        ?TS aso:timeSeriesBackgroundSubject ?TW . BIND("background-S" AS ?CT) . \
+        ?TW aso:hasText ?TXT . ?TW aso:createdAt ?DT \
+    }
+echo "=================================================="
+echo "  $(1) time background-O tweets"
+echo "--------------------------------------------------"
+set query.delete-output-if-answer-empty true
+set output "$(TIME-RANGE)/$(1)-background-O.txt"
+run ! \
+    SELECT ?TS ?CT ?TXT ?DT ?TW WHERE { \
+        ?TS rdf:type aso:$(1) . \
+        ?TS aso:timeSeriesBackgroundObject ?TW . BIND("background-O" AS ?CT) . \
+        ?TW aso:hasText ?TXT . ?TW aso:createdAt ?DT \
+    }
+echo "=================================================="
+echo "  $(1) time background-Country tweets"
+echo "--------------------------------------------------"
+set query.delete-output-if-answer-empty true
+set output "$(TIME-RANGE)/$(1)-background-Country.txt"
+run ! \
+    SELECT ?TS ?CT ?TXT ?DT ?TW WHERE { \
+        ?TS rdf:type aso:$(1) . \
+        ?TS aso:timeSeriesBackgroundCountry ?TW . BIND("background-Country" AS ?CT) . \
+        ?TW aso:hasText ?TXT . ?TW aso:createdAt ?DT \
+    }
+set query.delete-output-if-answer-empty false
+set output out
