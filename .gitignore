@@ -1,58 +1,26 @@
 *.class
 *.log
 
+#**/.DS_Store
+
+# SCALA
+
+*.class
+*.log
+
 # sbt specific
-.cache
-.history
-.lib/
-dist/*
-target/
-lib_managed/
-src_managed/
-project/boot/
-project/plugins/project/
+**/.cache
+**/.history
+**/.lib/
+**/dist/*
+**/target/
+**/lib_managed/
+**/src_managed/
+**/project/boot/
+**/project/plugins/project/
 
 # Scala-IDE specific
-.scala_dependencies
-.worksheet
+**/.scala_dependencies
+**/.worksheet
 
-
-# User-specific stuff:
-NLP/.idea/workspace.xml
-NLP/.idea/tasks.xml
-
-# Sensitive or high-churn files:
-NLP/.idea/dataSources/
-NLP/.idea/dataSources.ids
-NLP/.idea/dataSources.xml
-NLP/.idea/dataSources.local.xml
-NLP/.idea/sqlDataSources.xml
-NLP/.idea/dynamic.xml
-NLP/.idea/uiDesigner.xml
-
-# Gradle:
-NLP/.idea/gradle.xml
-NLP/.idea/libraries
-
-# Mongo Explorer plugin:
-NLP/.idea/mongoSettings.xml
-
-## File-based project format:
-*.iws
-
-## Plugin-specific files:
-
-# IntelliJ
-NLP/out/
-
-# mpeltonen/sbt-idea plugin
-NLP/.idea_modules/
-
-# JIRA plugin
-NLP/atlassian-ide-plugin.xml
-
-# Crashlytics plugin (for Android Studio and IntelliJ)
-NLP/com_crashlytics_export_strings.xml
-NLP/crashlytics.properties
-NLP/crashlytics-build.properties
-NLP/fabric.properties
+**/.idea
